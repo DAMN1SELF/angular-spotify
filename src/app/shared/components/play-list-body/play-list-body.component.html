@@ -5,7 +5,7 @@
       <li>fecha incorporación 🍌😁</li>
       <li><i class="uil uil-clock-eight"></i></li>
   </ul>
-  <ul class="play-list-rows" *ngFor="let track of tracks">
+  <ul class="play-list-rows" *ngFor="let track of tracks|orderList:'name':'asc'">
 
       <li class="track-name">
           <ng-container *ngTemplateOutlet="coverSection;context:{x:track}"></ng-container>
@@ -14,10 +14,10 @@
           {{track.album}}
       </li>
       <li class="track-name-opacity">
-          {{track.album}}
+          {{track.artist?.name}}
       </li>
       <li class="track-name-opacity">
-          {{track.album}}
+          {{track.name}}
       </li>
 
   </ul>
