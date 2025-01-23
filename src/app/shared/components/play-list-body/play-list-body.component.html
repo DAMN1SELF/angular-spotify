@@ -1,11 +1,11 @@
 <div class="play-list-body">
   <ul class="play-list-table-header">
-      <li >Nombre ❤</li>
-      <li >álbum 🆗</li>
-      <li>fecha incorporación 🍌😁</li>
-      <li><i class="uil uil-clock-eight"></i></li>
+      <li (click)="cambiarOrden('name')">Nombre ❤</li>
+      <li (click)="cambiarOrden('album')">álbum 🆗</li>
+      <li (click)="cambiarOrden('artist.name')">Artist Name🍌😁</li>
+      <li (click)="cambiarOrden('artist.nationality')">Nacionalidad<i class="uil uil-globe"></i></li>
   </ul>
-  <ul class="play-list-rows" *ngFor="let track of tracks|orderList:'name':'asc'">
+  <ul class="play-list-rows" *ngFor="let track of tracks|orderList:optionSort.property:optionSort.order">
 
       <li class="track-name">
           <ng-container *ngTemplateOutlet="coverSection;context:{x:track}"></ng-container>
@@ -17,7 +17,7 @@
           {{track.artist?.name}}
       </li>
       <li class="track-name-opacity">
-          {{track.name}}
+          {{track.artist?.nationality}}
       </li>
 
   </ul>

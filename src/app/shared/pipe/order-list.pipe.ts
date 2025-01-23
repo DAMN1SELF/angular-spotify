@@ -6,28 +6,31 @@ import { TrackModel } from '@core/models/tracks.models';
 })
 export class OrderListPipe implements PipeTransform {
 
-  transform(value: Array<any>, args:string |null=null,sort:string='asc'): TrackModel[] {
-     try {
-      if (args === null) {
-        return value
-      } else {
-        const tmpList = value.sort((a, b) => {
-          if (a[args] < b[args]) {
-            return -1
-          }
-          else if (a[args] === b[args]) {
-            return 0;
-          }
-          else if (a[args] > b[args]) {
-            return 1;
-          }
-          return 1
-        });
-        return (sort === 'asc') ? tmpList : tmpList.reverse()
+  transform(value: Array<any>, property: string | null = null, sort: string = 'asc'): TrackModel[] {
+    try {
+      if (!property) {
+        return value; // Si no hay propiedad, retorna la lista sin cambios
       }
+
+      const sortedList = value.sort((a, b) => {
+        const aValue = this.getNestedProperty(a, property) ?? '';
+        const bValue = this.getNestedProperty(b, property) ?? '';
+
+        // Comparar valores
+        if (aValue < bValue) return -1;
+        if (aValue > bValue) return 1;
+        return 0;
+      });
+
+      // Retornar en orden ascendente o descendente
+      return sort === 'asc' ? sortedList : sortedList.reverse();
     } catch (error) {
-        console.log(error);
-        return value;
+      console.error('Error al ordenar la lista:', error);
+      return value;
     }
+  }
+
+  private getNestedProperty(obj: any, path: string): any {
+    return path.split('.').reduce((acc, key) => (acc ? acc[key] : undefined), obj);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as dataRaw from '../../../data/tracks.json'
 import { TrackModel } from '@core/models/tracks.models';
+import { PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
 
 @Component({
   selector: 'app-play-list-body',
@@ -15,9 +16,31 @@ export class PlayListBodyComponent implements OnInit {
 
   }
 
+  optionSort:{
+    property:string|null
+    order:string
+  }={
+    property:null,
+    order:'asc'
+  }
+
+
   ngOnInit(): void {
     const {data} : any=(dataRaw as any).default
     this.tracks=data;
+  }
+
+  cambiarOrden(property: string): void {
+    const { order } = this.optionSort;
+
+    // Cambiar el orden entre asc y desc
+    this.optionSort = {
+      property,
+      order: order === 'asc' ? 'desc' : 'asc',
+    };
+
+
+    console.log('Orden actual:', this.optionSort, 'Datos ordenados:', this.tracks);
   }
 
 
