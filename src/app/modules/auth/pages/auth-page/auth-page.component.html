@@ -23,13 +23,16 @@
               Ocurrio un error con tu email o password
           </div>
           <div class="form-action">
-              <button class="login social-btn">Iniciar sesión</button>
+              <button [disabled]="frmLogin.invalid" class="login social-btn">Iniciar sesión</button>
           </div>
       </form>
 
       <div>
         <hr >
-        Raw: {{frmLogin.value|json}}
+        <br>Raw: {{frmLogin.value|json}}
+        <br>validar todo el formulario
+        <br>InValido: {{frmLogin.invalid}}
+        <br>Valido: {{frmLogin.valid}}
       </div>
 
   </div>
