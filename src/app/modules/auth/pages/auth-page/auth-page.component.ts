@@ -25,4 +25,9 @@ export class AuthPageComponent implements OnInit{
     })
   }
 
+  SendLogin():void{
+   const body =this.frmLogin.value;
+    console.log(body);
+  }
+
 }

@@ -7,7 +7,7 @@
           <button class="social-btn"><i class="uil uil-google"></i> Continuar con Google</button>
       </div>
       <div class="separator"></div>
-      <form  [formGroup]="frmLogin" class="login-auth-form">
+      <form (ngSubmit)="SendLogin()" [formGroup]="frmLogin" class="login-auth-form">
           <div class="form-group">
               <label for="email">Dirección de correo o nombre de usuario</label>
               <input formControlName="email" type="text" placeholder="Dirección de correo o nombre de usuario" class="form-input">
