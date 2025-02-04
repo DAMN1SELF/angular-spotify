@@ -14,6 +14,24 @@
   </div>
 </div>
 
+
+<!-- Diseño del mode (medio)-->
+<div *ngIf="mode==='medio'" class="card-player player-small">
+
+  <img appImgBroken [customImg]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr6a3JwynKKhblkrjpWw7HlHo18AooKWZELw&s'" [src]="track.cover" alt="" class="cover">
+  <div class="content-player">
+      <div class="title-track">{{track.name}}</div>
+  </div>
+  <div class="buttons-player">
+      <button (click)="sendPlay(track)" *ngIf="true" class="play-btn">
+          <i class="uil " [ngClass]="{'uil-play':true}"></i>
+      </button>
+      <button *ngIf="false" class="play-btn">
+          <i class="uil uil-play"></i>
+      </button>
+  </div>
+</div>
+
 <!-- Diseño del mode (big)-->
  <div *ngIf="mode==='big'" class="card-player player-big">
 
@@ -21,9 +39,10 @@
   <div class="content-player">
       <div class="title-track">{{track.name}}</div>
       <div class="sub-title-track">{{track.name}}</div>
+      <div class="sub-title-track">{{track.cover}}</div>
   </div>
   <div class="buttons-player">
-      <button  *ngIf="true" class="play-btn">
+      <button (click)="sendPlay(track)" *ngIf="true" class="play-btn">
           <i class="uil " [ngClass]="{'uil-play':true}"></i>
       </button>
       <button *ngIf="false" class="play-btn">

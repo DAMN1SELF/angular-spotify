@@ -9,7 +9,7 @@ import { TrackModel } from '@core/models/tracks.models';
 export class SectionGenericComponent implements OnInit{
 
   @Input() title:string=''
-  @Input() mode: 'small'|'big'='big'
+  @Input() mode: 'small'| 'medio' |'big'='big'
   @Input() dataTracks: Array<TrackModel> =[]
 
 
