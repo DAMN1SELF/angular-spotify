@@ -22,23 +22,30 @@ constructor(private trackService:TrackService) {}
 
 ngOnInit(): void {
 
-  this.trackService.getAllTracksTrending$()
-  .subscribe((response:TrackModel[]) => {
-    console.log(response)
-    this.tracksTrending=response
-  })
+  this.trackService.getAllTracksTrending$().toPromise()
+  .then(res=>{ this.tracksTrending=res })
+  .catch(error=>{ console.log('Error ',error) })
+
 
   this.trackService.getAllTracksRandom$()
   .subscribe((response:TrackModel[]) => {
     this.tracksRandom=response
+  },err => {
+    console.log('Error ',err)
   })
 
-  this.trackService.getAllTracksSaved$()
-  .subscribe((response:TrackModel[]) => {
-    this.tracksSaved=response
-  })
+  // this.trackService.getAllTracksSaved$()
+  // .subscribe((response:TrackModel[]) => {
+  //   this.tracksSaved=response
+  // })
+  this.loadTracksSaved()
 
 
+}
+
+
+async loadTracksSaved():Promise<any>{
+  this.tracksSaved = await this.trackService.getAllTracksSaved$().toPromise()
 }
 
 ngOnDestroy(): void {
