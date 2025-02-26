@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { TrackModel } from '@core/models/tracks.models';
@@ -22,11 +22,18 @@ export class TrackService {
     })
   }
 
-  getAllTracks$():Observable<any>{
+  getAllTracksTrending$():Observable<any>{
     return this.http.get(`${this.URL}/tracks`)
     .pipe(map(({data}:any)=>{
           return data
           })
+         )
+  }
+
+  getAllTracksSaved$():Observable<any>{
+    return this.http.get(`${this.URL}/tracks`)
+    .pipe(
+      mergeMap(({data}:any)=> this.skipById(data,2))
          )
   }
 

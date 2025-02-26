@@ -22,17 +22,22 @@ constructor(private trackService:TrackService) {}
 
 ngOnInit(): void {
 
-  this.trackService.getAllTracks$()
+  this.trackService.getAllTracksTrending$()
   .subscribe((response:TrackModel[]) => {
     console.log(response)
     this.tracksTrending=response
-    this.tracksSaved=response
   })
 
   this.trackService.getAllTracksRandom$()
   .subscribe((response:TrackModel[]) => {
     this.tracksRandom=response
   })
+
+  this.trackService.getAllTracksSaved$()
+  .subscribe((response:TrackModel[]) => {
+    this.tracksSaved=response
+  })
+
 
 }
 
