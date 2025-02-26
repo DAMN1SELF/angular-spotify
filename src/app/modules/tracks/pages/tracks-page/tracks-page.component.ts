@@ -22,6 +22,18 @@ constructor(private trackService:TrackService) {}
 
 ngOnInit(): void {
 
+  this.trackService.getAllTracks$()
+  .subscribe((response:TrackModel[]) => {
+    console.log(response)
+    this.tracksTrending=response
+    this.tracksSaved=response
+  })
+
+  this.trackService.getAllTracksRandom$()
+  .subscribe((response:TrackModel[]) => {
+    this.tracksRandom=response
+  })
+
 }
 
 ngOnDestroy(): void {

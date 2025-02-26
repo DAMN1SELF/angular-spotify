@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as dataRaw from '../../../data/tracks.json'
 import { TrackModel } from '@core/models/tracks.models';
-import { PRECONNECT_CHECK_BLOCKLIST } from '@angular/common';
 
 @Component({
   selector: 'app-play-list-body',
