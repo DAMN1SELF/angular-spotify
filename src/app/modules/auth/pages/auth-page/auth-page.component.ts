@@ -10,6 +10,8 @@ import { AuthService } from '@modules/auth/services/auth.service';
 export class AuthPageComponent implements OnInit{
 
   frmLogin:FormGroup = new FormGroup({});
+  errorSesion:boolean=false;
+
   constructor(private servicioAuth:AuthService){
   }
   ngOnInit(): void {
@@ -32,8 +34,11 @@ export class AuthPageComponent implements OnInit{
     .subscribe(responseOk =>{
       console.log('Session iniciada correcta 200<400')
     },
-    err=>
-      console.log('Ocurrio error >=400'))
+    err=>{
+      this.errorSesion=true
+      console.log('Ocurrio error >=400')
+    }
+    )
   }
 
 }
