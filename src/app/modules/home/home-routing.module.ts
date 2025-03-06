@@ -14,10 +14,10 @@ const routes: Routes = [
     path:'history',
     loadChildren:() => import('@modules/history/history.module').then(m=>m.HistoryModule)
   },
-  {
-    path :'**',
-    redirectTo:'/auth/login'
-  }
+  // {
+  //   path :'**',
+  //   redirectTo:'/auth/login'
+  // }
 
 ];
 
