@@ -28,7 +28,12 @@ export class AuthPageComponent implements OnInit{
 
   SendLogin():void{
    const {email,password} =this.frmLogin.value;
-    this.servicioAuth.enviarLogin(email,password);
+    this.servicioAuth.enviarLogin(email,password)
+    .subscribe(responseOk =>{
+      console.log('Session iniciada correcta 200<400')
+    },
+    err=>
+      console.log('Ocurrio error >=400'))
   }
 
 }

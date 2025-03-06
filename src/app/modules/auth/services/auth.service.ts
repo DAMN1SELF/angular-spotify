@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  private readonly URL=environment.api;
 
-  enviarLogin(email:string,password:string):void{
-    console.log(email,password);
- }
+  constructor(private http: HttpClient) { }
+
+  enviarLogin(email:string,password:string):Observable<any>{
+    const body={
+      email,password
+    }
+    return this.http.post(`${this.URL}/auth/login`,body)
+  }
 }
